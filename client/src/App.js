@@ -20,12 +20,19 @@ function App() {
     showPersonsList();
   }
 
-  const handleSubmit = async (e) => {
-    e.preverntDefault();
-    await axios.post('/api/persons', {
-      name, 
-      number
-    })
+  const handleSubmit = async () => {
+    let currPerson = book.find(person => (person.name == name))
+    if (currPerson) {
+      await axios.put(`/api/persons/${currPerson.id}`, {
+        name, 
+        number
+      }) 
+    } else {
+      await axios.post('/api/persons', {
+       name, 
+       number
+     })
+    }
     showPersonsList();
   }
 
