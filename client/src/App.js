@@ -20,7 +20,8 @@ function App() {
     showPersonsList();
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preverntDefault();
     await axios.post('/api/persons', {
       name, 
       number
